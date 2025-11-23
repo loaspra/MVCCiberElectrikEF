@@ -110,7 +110,34 @@ namespace pe.com.ciberelectrik.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             distrito distrito = db.distrito.Find(id);
-            db.distrito.Remove(distrito);
+            // Eliminación lógica en lugar de física
+            distrito.estdis = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET: Distrito/Enable/5
+        public ActionResult Enable(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            distrito distrito = db.distrito.Find(id);
+            if (distrito == null)
+            {
+                return HttpNotFound();
+            }
+            return View(distrito);
+        }
+
+        // POST: Distrito/Enable/5
+        [HttpPost, ActionName("Enable")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EnableConfirmed(int id)
+        {
+            distrito distrito = db.distrito.Find(id);
+            distrito.estdis = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

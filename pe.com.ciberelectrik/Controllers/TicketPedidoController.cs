@@ -119,7 +119,34 @@ namespace pe.com.ciberelectrik.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ticketpedido ticketpedido = db.ticketpedido.Find(id);
-            db.ticketpedido.Remove(ticketpedido);
+            // Eliminación lógica en lugar de física
+            ticketpedido.estped = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET: TicketPedido/Enable/5
+        public ActionResult Enable(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ticketpedido ticketpedido = db.ticketpedido.Find(id);
+            if (ticketpedido == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ticketpedido);
+        }
+
+        // POST: TicketPedido/Enable/5
+        [HttpPost, ActionName("Enable")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EnableConfirmed(int id)
+        {
+            ticketpedido ticketpedido = db.ticketpedido.Find(id);
+            ticketpedido.estped = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

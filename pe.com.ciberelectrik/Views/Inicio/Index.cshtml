@@ -1,0 +1,39 @@
+
+@{
+    ViewBag.Title = "Ingreso al Sistema";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<!-- iniciamos creando el contedor en Bootstrap -->
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <!-- inicio login -->
+    <div class="p-5 rounded-5 shadow-lg" style="max-width: 400px; background-color: white;">
+        <h1 class="text-center">Ingreso al Sistema</h1>
+        <!-- inicio del formulario -->
+        <form method="post" action="@Url.Action("ValidarUsuario","Inicio")">
+            <div class="mb-3">
+                <label for="txtUsu" class="form-label">Usuario: </label>
+                <input type="text" class="form-control" id="txtUsu" name="usuario" required placeholder="Ingrese el usuario" />
+            </div>
+            <div class="mb-3">
+                <label for="txtCla" class="form-label">Clave:</label>
+                <input type="password" class="form-control" id="txtCla" name="clave" required placeholder="Ingrese la clave" />
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+            </div>
+            <div class="mb-3"></div>
+            @*capturando los valores del ViewBag*@
+            @if (ViewBag.Mensaje != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                    @ViewBag.Mensaje
+                    <button type="button" class="btn-close" 
+                            data-bs-dismiss="alert" arial-label="Close"></button>
+                </div>
+            }
+
+        </form>
+    </div>
+    <!-- fin del login -->
+</div>

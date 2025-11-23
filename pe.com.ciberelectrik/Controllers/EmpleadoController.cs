@@ -127,7 +127,34 @@ namespace pe.com.ciberelectrik.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             empleado empleado = db.empleado.Find(id);
-            db.empleado.Remove(empleado);
+            // Eliminación lógica en lugar de física
+            empleado.estemp = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET: Empleado/Enable/5
+        public ActionResult Enable(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            empleado empleado = db.empleado.Find(id);
+            if (empleado == null)
+            {
+                return HttpNotFound();
+            }
+            return View(empleado);
+        }
+
+        // POST: Empleado/Enable/5
+        [HttpPost, ActionName("Enable")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EnableConfirmed(int id)
+        {
+            empleado empleado = db.empleado.Find(id);
+            empleado.estemp = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

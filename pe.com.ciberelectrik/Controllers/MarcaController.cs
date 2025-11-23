@@ -110,7 +110,34 @@ namespace pe.com.ciberelectrik.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             marca marca = db.marca.Find(id);
-            db.marca.Remove(marca);
+            // Eliminación lógica en lugar de física
+            marca.estmar = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET: Marca/Enable/5
+        public ActionResult Enable(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            marca marca = db.marca.Find(id);
+            if (marca == null)
+            {
+                return HttpNotFound();
+            }
+            return View(marca);
+        }
+
+        // POST: Marca/Enable/5
+        [HttpPost, ActionName("Enable")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EnableConfirmed(int id)
+        {
+            marca marca = db.marca.Find(id);
+            marca.estmar = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

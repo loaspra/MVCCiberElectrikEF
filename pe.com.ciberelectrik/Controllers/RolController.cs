@@ -110,7 +110,34 @@ namespace pe.com.ciberelectrik.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             rol rol = db.rol.Find(id);
-            db.rol.Remove(rol);
+            // Eliminación lógica en lugar de física
+            rol.estrol = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET: Rol/Enable/5
+        public ActionResult Enable(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            rol rol = db.rol.Find(id);
+            if (rol == null)
+            {
+                return HttpNotFound();
+            }
+            return View(rol);
+        }
+
+        // POST: Rol/Enable/5
+        [HttpPost, ActionName("Enable")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EnableConfirmed(int id)
+        {
+            rol rol = db.rol.Find(id);
+            rol.estrol = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

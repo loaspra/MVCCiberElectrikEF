@@ -110,7 +110,34 @@ namespace pe.com.ciberelectrik.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             tipodocumento tipodocumento = db.tipodocumento.Find(id);
-            db.tipodocumento.Remove(tipodocumento);
+            // Eliminación lógica en lugar de física
+            tipodocumento.esttipd = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET: TipoDocumento/Enable/5
+        public ActionResult Enable(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tipodocumento tipodocumento = db.tipodocumento.Find(id);
+            if (tipodocumento == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tipodocumento);
+        }
+
+        // POST: TipoDocumento/Enable/5
+        [HttpPost, ActionName("Enable")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EnableConfirmed(int id)
+        {
+            tipodocumento tipodocumento = db.tipodocumento.Find(id);
+            tipodocumento.esttipd = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

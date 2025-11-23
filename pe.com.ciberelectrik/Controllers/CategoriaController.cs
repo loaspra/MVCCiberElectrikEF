@@ -110,7 +110,34 @@ namespace pe.com.ciberelectrik.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             categoria categoria = db.categoria.Find(id);
-            db.categoria.Remove(categoria);
+            // Eliminación lógica en lugar de física
+            categoria.estcat = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET: Categoria/Enable/5
+        public ActionResult Enable(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            categoria categoria = db.categoria.Find(id);
+            if (categoria == null)
+            {
+                return HttpNotFound();
+            }
+            return View(categoria);
+        }
+
+        // POST: Categoria/Enable/5
+        [HttpPost, ActionName("Enable")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EnableConfirmed(int id)
+        {
+            categoria categoria = db.categoria.Find(id);
+            categoria.estcat = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

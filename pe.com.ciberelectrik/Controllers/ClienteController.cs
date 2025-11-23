@@ -123,7 +123,34 @@ namespace pe.com.ciberelectrik.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             cliente cliente = db.cliente.Find(id);
-            db.cliente.Remove(cliente);
+            // Eliminación lógica en lugar de física
+            cliente.estcli = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET: Cliente/Enable/5
+        public ActionResult Enable(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            cliente cliente = db.cliente.Find(id);
+            if (cliente == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cliente);
+        }
+
+        // POST: Cliente/Enable/5
+        [HttpPost, ActionName("Enable")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EnableConfirmed(int id)
+        {
+            cliente cliente = db.cliente.Find(id);
+            cliente.estcli = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
