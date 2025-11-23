@@ -123,6 +123,8 @@
     <Compile Include="Controllers\DetalleTicketPedidoController.cs" />
     <Compile Include="Controllers\DistritoController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\MarcaController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\RolController.cs" />
@@ -178,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -188,20 +191,25 @@
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Inicio\Index.cshtml" />
     <Content Include="Views\Categoria\Create.cshtml" />
     <Content Include="Views\Categoria\Delete.cshtml" />
     <Content Include="Views\Categoria\Details.cshtml" />
     <Content Include="Views\Categoria\Edit.cshtml" />
+    <Content Include="Views\Categoria\Enable.cshtml" />
     <Content Include="Views\Categoria\Index.cshtml" />
     <Content Include="Views\Cliente\Create.cshtml" />
     <Content Include="Views\Cliente\Delete.cshtml" />
     <Content Include="Views\Cliente\Details.cshtml" />
     <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\Cliente\Enable.cshtml" />
     <Content Include="Views\Cliente\Index.cshtml" />
     <Content Include="Views\Marca\Create.cshtml" />
     <Content Include="Views\Marca\Delete.cshtml" />
     <Content Include="Views\Marca\Details.cshtml" />
     <Content Include="Views\Marca\Edit.cshtml" />
+    <Content Include="Views\Marca\Enable.cshtml" />
     <Content Include="Views\Marca\Index.cshtml" />
     <Content Include="Views\DetalleTicketPedido\Create.cshtml" />
     <Content Include="Views\DetalleTicketPedido\Delete.cshtml" />
@@ -212,36 +220,43 @@
     <Content Include="Views\Distrito\Delete.cshtml" />
     <Content Include="Views\Distrito\Details.cshtml" />
     <Content Include="Views\Distrito\Edit.cshtml" />
+    <Content Include="Views\Distrito\Enable.cshtml" />
     <Content Include="Views\Distrito\Index.cshtml" />
     <Content Include="Views\Empleado\Create.cshtml" />
     <Content Include="Views\Empleado\Delete.cshtml" />
     <Content Include="Views\Empleado\Details.cshtml" />
     <Content Include="Views\Empleado\Edit.cshtml" />
+    <Content Include="Views\Empleado\Enable.cshtml" />
     <Content Include="Views\Empleado\Index.cshtml" />
     <Content Include="Views\Producto\Create.cshtml" />
     <Content Include="Views\Producto\Delete.cshtml" />
     <Content Include="Views\Producto\Details.cshtml" />
     <Content Include="Views\Producto\Edit.cshtml" />
+    <Content Include="Views\Producto\Enable.cshtml" />
     <Content Include="Views\Producto\Index.cshtml" />
     <Content Include="Views\Rol\Create.cshtml" />
     <Content Include="Views\Rol\Delete.cshtml" />
     <Content Include="Views\Rol\Details.cshtml" />
     <Content Include="Views\Rol\Edit.cshtml" />
+    <Content Include="Views\Rol\Enable.cshtml" />
     <Content Include="Views\Rol\Index.cshtml" />
     <Content Include="Views\Sexo\Create.cshtml" />
     <Content Include="Views\Sexo\Delete.cshtml" />
     <Content Include="Views\Sexo\Details.cshtml" />
     <Content Include="Views\Sexo\Edit.cshtml" />
+    <Content Include="Views\Sexo\Enable.cshtml" />
     <Content Include="Views\Sexo\Index.cshtml" />
     <Content Include="Views\TicketPedido\Create.cshtml" />
     <Content Include="Views\TicketPedido\Delete.cshtml" />
     <Content Include="Views\TicketPedido\Details.cshtml" />
     <Content Include="Views\TicketPedido\Edit.cshtml" />
+    <Content Include="Views\TicketPedido\Enable.cshtml" />
     <Content Include="Views\TicketPedido\Index.cshtml" />
     <Content Include="Views\TipoDocumento\Create.cshtml" />
     <Content Include="Views\TipoDocumento\Delete.cshtml" />
     <Content Include="Views\TipoDocumento\Details.cshtml" />
     <Content Include="Views\TipoDocumento\Edit.cshtml" />
+    <Content Include="Views\TipoDocumento\Enable.cshtml" />
     <Content Include="Views\TipoDocumento\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
